@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  syncplay:
+    container_name: syncplay
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      PASSWORD: ${SYNCPLAY_PASSWORD}
+      SALT: ${SYNCPLAY_SALT}
+    user: "${PUID}:${PGID}"
+    ports:
+      - 8999:8999
+    restart: unless-stopped
